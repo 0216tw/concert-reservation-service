@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9308dc3-dbfb-4397-9a64-26af89b81bae" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/ConcertApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/ConcertApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/ApiControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/ApiControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/concert/ConcertController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/concert/ConcertController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/payment/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/payment/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/reservation/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/reservation/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/token/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/controller/token/TokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/filter/LoggingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/adapter/filter/LoggingFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/domain/service/reservation/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/domain/service/reservation/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/domain/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/domain/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/repositoryImpl/concert/ConcertRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hhplus/concert/repositoryImpl/concert/ConcertRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/ConcertApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/ConcertApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/ConcertReservationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/ConcertReservationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertDatesUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertDatesUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertSeatsUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertSeatsUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertsUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/PossibleConcertsUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/QueuePollingIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/integration/usecase/QueuePollingIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/BalanceServiceBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/BalanceServiceBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/ChargeBalanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/ChargeBalanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/GetBalanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/balance/GetBalanceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/payment/PaymentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/payment/PaymentServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/token/TokenCreationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hhplus/concert/unit/service/token/TokenCreationTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="f9308dc3-dbfb-4397-9a64-26af89b81bae" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
