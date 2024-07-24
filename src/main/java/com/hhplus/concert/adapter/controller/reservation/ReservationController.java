@@ -24,10 +24,8 @@ public class ReservationController {
 
     @PostMapping("/api/reservation")
     public ResponseEntity<ApiResponse> reservation(HttpServletRequest request,  @Valid @RequestBody ReservationRequest reservation) {
-        log.info("[콘서트 예약 요청 컨트롤러 진입]");
         String userId = request.getAttribute("userId").toString();
         ApiResponse response = reservationUseCase.reservation(userId , reservation.getConcertId() , reservation.getConcertDy() , reservation.getSeatNo());
-        log.info("[콘서트 예약 요청 완료]");
         return ResponseEntity.ok(response);
     }
 }

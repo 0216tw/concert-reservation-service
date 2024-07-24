@@ -29,32 +29,25 @@ public class ConcertController {
 
     @GetMapping("/api/concerts")
     public ResponseEntity<ApiResponse> findConcertAll() {
-        log.info("[콘서트 목록 조회 컨트롤러 진입]");
         ApiResponse response = possibleConcertsUseCase.getPossibleConcerts();
-        log.info("[콘서트 목록 조회 완료]");
         return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/api/concerts/{concertId}/dates") //콘서트 예약 가능 날짜 조회
     public ResponseEntity<ApiResponse> findPossibleDates(@PathVariable("concertId") long concertId) {
-
-        log.info("[콘서트 예약 가능 날짜 조회 컨트롤러 진입] concertId: {}", concertId);
         if(concertId <= 0) {
             log.warn("[Bad Request] 잘못된 파라미터 : concertId -> {}" , concertId);
             throw new BusinessException("ERR" , MessageEnum.BAD_REQUEST);
         }
 
         ApiResponse response =  possibleConcertDatesUseCase.getPossibleConcertDates(concertId);
-        log.info("[콘서트 예약 가능 날짜 조회 완료]");
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/api/concerts/{concertId}/dates/{concertDy}/seats") //콘서트 예약 가능 좌석 조회
     public ResponseEntity<ApiResponse> PossibleDatesResponse(@PathVariable("concertId") long concertId , @PathVariable("concertDy") String concertDy) {
-        log.info("[콘서트 예약 가능 좌석 조회 컨트롤러 진입] concertId : {} , concertDy : {}" , concertId , concertDy);
         ApiResponse response = possibleConcertSeatsUseCase.getPossibleConcertSeats(concertId , concertDy);
-        log.info("[콘서트 예약 가능 좌석 조회 완료]");
-        return ResponseEntity.ok(response);
+       return ResponseEntity.ok(response);
 
     }
 }

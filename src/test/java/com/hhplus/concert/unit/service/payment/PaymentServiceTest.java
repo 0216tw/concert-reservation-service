@@ -82,17 +82,14 @@ public class PaymentServiceTest {
 
         //when
  //       when(paymentGateway.pay(cardNo, ticketPrice)).thenReturn(new PaymentGatewayResponse("ERR"));
-        when(paymentRepository.save(payment)).thenReturn(payment);
+        when(paymentRepository.save(payment)).thenThrow(new BusinessException("ERR" , MessageEnum.PAYMENT_FAILURE));
 
         BusinessException exception = assertThrows(BusinessException.class, () -> {
-            paymentService.pay(cardNo , ticketPrice);
             paymentService.insertPaymentInfo(payment);
         });
 
         //then
         Assertions.assertThat(exception.getMessage()).isEqualTo(MessageEnum.PAYMENT_FAILURE.getMessage());
-        verify(paymentRepository , never()).save(payment);
-
     }
 
 

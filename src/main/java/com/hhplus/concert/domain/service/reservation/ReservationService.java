@@ -34,7 +34,7 @@ public class ReservationService {
             LocalDate.parse(concertDy, formatter);
         } catch (DateTimeParseException e) {
             log.warn("[좌석 예약 상태 변경] {}" , MessageEnum.INVALID_DATE_FORMAT.getMessage());
-            throw new RuntimeException(MessageEnum.INVALID_DATE_FORMAT.getMessage());
+            throw new BusinessException("ERR" , MessageEnum.INVALID_DATE_FORMAT);
         }
 
         return reservationRepository.updateSeatStatus(concertId , concertDy , seatNo , before , after);

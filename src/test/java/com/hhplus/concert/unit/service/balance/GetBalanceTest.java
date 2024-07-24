@@ -1,8 +1,12 @@
 package com.hhplus.concert.unit.service.balance;
 
+import com.hhplus.concert.domain.model.token.Token;
+import com.hhplus.concert.domain.model.user.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
 
 import static org.mockito.Mockito.doAnswer;
 
@@ -12,22 +16,28 @@ import static org.mockito.Mockito.doAnswer;
  */
 public class GetBalanceTest extends BalanceServiceBase {
 
+
     @Test
     @DisplayName("성공-잔액 조회")
     public void 잔액_조회_성공() {
 
         //given
-        String userId = "123456789";
+        Token token = tokenService.createToken();
+        String userId = token.getUserId();
+        long charge = 150000L;
+        //when
+        doAnswer(invocation -> {
+            return charge;
+        }).when(balanceRepository).getBalance(userId);
 
         //when
         doAnswer(invocation -> {
-            mockUser.get(0).setBalance(mockUser.get(0).getBalance());
-            return mockUser.get(0).getBalance();
-        }).when(balanceRepository).getBalance(userId);
+            return Optional.of(new User());
+        }).when(balanceRepository).findById(userId);
 
         long balance = balanceService.getBalance(userId);
 
         //then
-        Assertions.assertThat(balance).isEqualTo(mockUser.get(0).getBalance());
+        Assertions.assertThat(balance).isEqualTo(150000);
     }
 }

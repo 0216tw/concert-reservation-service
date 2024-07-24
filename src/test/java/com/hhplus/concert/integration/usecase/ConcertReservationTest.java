@@ -60,7 +60,7 @@ public class ConcertReservationTest {
 
         long concertId = 3L;
         String concertDy = "20230714";
-        long seatNo = 5L;
+        long seatNo = 11L;
 
         //when
         ApiResponse response = reservationUseCase.reservation(userId , concertId , concertDy , seatNo);
@@ -111,7 +111,7 @@ public class ConcertReservationTest {
 
             long concertId = 3L;
             String concertDy = "20230714";
-            long seatNo = 5;
+            long seatNo = 22L;
             String token = (String)((HashMap<String , Object>)tokenCreationUseCase.createToken().getData()).get("token");
             String userId = queueRepository.findByToken(token).get().getUserId();
 
@@ -133,8 +133,8 @@ public class ConcertReservationTest {
         executorService.shutdown();
 
         //업데이트는 한번만 수행되어야 함
-        Assertions.assertThat(successCount.get()).isEqualTo(1);
         Assertions.assertThat(failCount.get()).isEqualTo(4);
+        Assertions.assertThat(successCount.get()).isEqualTo(1);
     }
 
 

@@ -3,6 +3,9 @@ package com.hhplus.concert.integration.usecase;
 
 import com.hhplus.concert.application.dto.response.ApiResponse;
 import com.hhplus.concert.application.usecase.PossibleConcertSeatsUseCase;
+import com.hhplus.concert.domain.model.concert.Concert;
+import com.hhplus.concert.domain.model.concert.ConcertSeat;
+import com.hhplus.concert.domain.model.concert.ConcertSeatId;
 import com.hhplus.concert.domain.model.queue.Queue;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -32,11 +35,11 @@ public class PossibleConcertSeatsUseCaseTest {
         //given
 
         //when
-        ApiResponse response = possibleConcertSeatsUseCase.getPossibleConcertSeats(1L, "20230710");
-        List<Long> seats = (List<Long>) response.getData();
+        ApiResponse response = possibleConcertSeatsUseCase.getPossibleConcertSeats(3L, "20230714");
+        List<ConcertSeat> seats = (List<ConcertSeat>) response.getData();
 
         //then
-        Assertions.assertThat(seats).contains(11L , 12L , 15L , 17L , 18L);
+        Assertions.assertThat(seats).extracting(concertSeat -> concertSeat.getId().getSeatNo()).contains(49L , 50L , 48L );
 
     }
 

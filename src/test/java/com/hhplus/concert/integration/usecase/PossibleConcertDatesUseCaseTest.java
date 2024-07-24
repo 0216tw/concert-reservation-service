@@ -2,9 +2,11 @@ package com.hhplus.concert.integration.usecase;
 import com.hhplus.concert.application.dto.response.ApiResponse;
 import com.hhplus.concert.application.usecase.PossibleConcertDatesUseCase;
 
+import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.util.*;
@@ -13,9 +15,12 @@ import java.util.*;
 /*
  예약 가능한 콘서트 날짜 조회 통합 테스트
  */
+@SpringBootTest
 public class PossibleConcertDatesUseCaseTest {
     @Autowired
     PossibleConcertDatesUseCase possibleConcertDatesUseCase;
+
+
 
     @Test
     @DisplayName("성공-예약 가능 일자 조회")
@@ -24,11 +29,11 @@ public class PossibleConcertDatesUseCaseTest {
         //given
 
         //when
-        ApiResponse response = possibleConcertDatesUseCase.getPossibleConcertDates(1L);
+        ApiResponse response = possibleConcertDatesUseCase.getPossibleConcertDates(3L);
         List<String> concerts = (List<String>) response.getData();
 
         //then
-        Assertions.assertThat(concerts).contains("20240711");
+        Assertions.assertThat(concerts).contains("20230714");
     }
 
     @Test

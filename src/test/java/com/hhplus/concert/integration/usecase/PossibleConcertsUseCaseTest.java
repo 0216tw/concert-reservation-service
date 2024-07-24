@@ -31,7 +31,6 @@ public class PossibleConcertsUseCaseTest {
 
 
     @Test
-    @Order(1)
     @DisplayName("성공-예약가능콘서트목록조회")
     public void 예약가능한_콘서트_목록_조회() {
 
@@ -41,7 +40,6 @@ public class PossibleConcertsUseCaseTest {
         ApiResponse response = possibleConcertsUseCase.getPossibleConcerts();
 
         List<Concert> concerts = (List<Concert>)response.getData();
-        System.out.println(concerts.get(0).getConcertName());
 
         //then
         Assertions.assertThat(concerts).extracting(Concert::getConcertId).contains(1L , 2L);
@@ -49,7 +47,6 @@ public class PossibleConcertsUseCaseTest {
     }
 
     @Test
-    @Order(2)
     @DisplayName("성공-예약가능한 콘서트 목록 없음")
     public void 예약_가능한_콘서트_없음() {
 

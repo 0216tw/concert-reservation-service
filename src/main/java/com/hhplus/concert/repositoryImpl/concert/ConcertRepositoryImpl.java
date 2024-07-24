@@ -22,7 +22,7 @@ public class ConcertRepositoryImpl implements ConcertRepositoryCustom  {
 
         String jpql = """
             select A
-              from Concert A 
+              from Concert A
              where exists ( 
                             select 1 
                               from ConcertSeat B   

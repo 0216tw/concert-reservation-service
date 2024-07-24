@@ -34,7 +34,7 @@ public class QueuePollingIntegrationTest {
     @Test
     @DisplayName("큐 polling 테스트")
     public void 큐_polling_테스트() throws InterruptedException {
-        sleep(20000);
+        sleep(5);
         queueScheduler.polling();
     }
 
@@ -42,7 +42,7 @@ public class QueuePollingIntegrationTest {
     @DisplayName("삭제 및 적재 테스트")
     public void 큐_기능_통합테스트() throws InterruptedException {
 
-        sleep(10000);
+        sleep(5);
         queuePollingUseCase.checkTokenSchedule();
 
     }

@@ -22,10 +22,8 @@ public class PaymentController {
 
     @PostMapping("/api/payment")
     public ResponseEntity<ApiResponse> payment(@Valid @RequestBody PaymentRequest payment) {
-        log.info("[결제 컨트롤러 진입]");
         ApiResponse response = paymentUseCase.payment(payment.getReservationId());
-        log.info("[결제 처리 완료]");
-        return ResponseEntity.ok(response);
+       return ResponseEntity.ok(response);
 
     }
 }

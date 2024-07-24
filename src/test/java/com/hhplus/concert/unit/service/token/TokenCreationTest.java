@@ -20,14 +20,13 @@ public class TokenCreationTest extends TokenServiceBase {
     public void 토큰_생성_성공() {
 
         //given
-        String uuid = UUID.randomUUID().toString();
 
         //when
         Token token = tokenService.createToken();
 
+
         //then
         Assertions.assertThat(token.getToken()).isNotNull();
-        Assertions.assertThat(token.getToken()).isEqualTo(tokenService.createToken().getToken());
     }
 
 }

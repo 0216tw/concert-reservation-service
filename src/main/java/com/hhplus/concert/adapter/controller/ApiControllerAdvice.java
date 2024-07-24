@@ -3,6 +3,7 @@ package com.hhplus.concert.adapter.controller;
 import com.hhplus.concert.application.dto.response.ApiResponse;
 import com.hhplus.concert.common.constants.MessageEnum;
 import com.hhplus.concert.common.exception.BusinessException;
+import jakarta.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -59,5 +60,10 @@ public class ApiControllerAdvice {
     public ResponseEntity<ApiResponse> handleBusinessException(RuntimeException e) {
         log.error("[내부 서버 오류] {}" , e.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("ERR" , e.getMessage()));
+    }
+
+    @ExceptionHandler(ServletException.class)
+    public ResponseEntity<String> handleServletException(ServletException ex) {
+        return new ResponseEntity<>("ServletException occurred: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

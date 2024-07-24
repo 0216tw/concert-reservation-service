@@ -20,9 +20,7 @@ public class TokenController {
 
     @PostMapping("/api/token")
     public ResponseEntity<ApiResponse> createToken() {
-        log.info("[토큰 생성 요청 컨트롤러 진입]");
         ApiResponse response = createTokenUseCase.createToken();
-        log.info("[토큰 생성 완료]");
         return ResponseEntity.ok(response);
     }
 }
