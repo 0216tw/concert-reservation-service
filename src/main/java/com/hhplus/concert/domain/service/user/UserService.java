@@ -21,21 +21,29 @@ public class UserService {
     UserRepository userRepository;
 
     public long charge(String userId , long charge) {
-        findUserById(userId); //사용자 검증
-        log.info("[사용자 잔액 충전] userId : {} , 충전할 금액 : {}" , userId , charge);
-        return userRepository.charge(userId , charge);
+        try {
+            User user = userRepository.findByIdForUpdate(userId); // 비관적 락을 사용하여 사용자 조회
+
+            long afterCharge = user.getBalance() + charge;
+            user.setBalance(afterCharge);
+
+            log.info("[사용자 잔액 충전] userId : {}, 충전할 금액 : {}", userId, charge);
+
+            userRepository.save(user); // 엔티티 저장
+            return afterCharge;
+
+        } catch (Exception e) {
+            log.error("Exception occurred for userId: {}", userId, e);
+            throw new BusinessException("ERR", MessageEnum.BAD_REQUEST);
+        }
     }
 
-    public long use(String userId , long charge) {
-        findUserById(userId); //사용자 검증
-        log.info("[사용자 잔액 사용] userId : {} , 사용할 금액 : {}" , userId , charge);
-        return userRepository.use(userId , charge);
-    }
-
-    public long getBalance(String userId) {
-        findUserById(userId); //사용자 검증
-        log.info("[사용자 잔액 조회] userId : {}" , userId);
-        return userRepository.getBalance(userId);
+    public long use(String userId , long use) {
+        User user = userRepository.findByIdForUpdate(userId); // 비관적 락을 사용하여 사용자 조회
+        long afterCharge = user.getBalance() - use;
+        user.setBalance(afterCharge);
+        log.info("[사용자 잔액 사용] userId : {} , 사용할 금액 : {}" , userId , use);
+        return userRepository.save(user).getBalance();
     }
 
     public User insertUser(User user) {
