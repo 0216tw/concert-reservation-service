@@ -9,6 +9,7 @@ import com.hhplus.concert.domain.model.concert.ConcertSeat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,8 +54,11 @@ public class ConcertService {
         return concertSeatRepository.getPossibleSeats(concertId , concertDy);
     }
 
+    @Cacheable(value="Concerts" , key = "'possibleConcerts'")
     public List<Concert> getPossibleConcerts() {
-        log.info("[예약가능한 콘서트 목록 조회]");
+        log.info("[예약 가능한 콘서트 목록 조회]");
+        List<Concert> concerts = concertRepository.getPossibleConcerts();
+        log.info("Fetched concerts from DB: {}", concerts);
         return concertRepository.getPossibleConcerts();
     }
 
