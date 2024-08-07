@@ -10,6 +10,7 @@ import com.hhplus.concert.common.constants.MessageEnum;
 import com.hhplus.concert.common.exception.BusinessException;
 import com.hhplus.concert.domain.model.queue.Queue;
 import com.hhplus.concert.domain.model.reservation.Reservation;
+import com.hhplus.concert.domain.model.user.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,11 @@ public class PaymentUseCaseTest {
 
         //잔액충전
         String userId = foundQueue.get().getUserId();
-        userRepository.charge(userId , 200000);
+        User user = userRepository.findById(userId).get();
+        user.setBalance(user.getBalance() + 150000);
+        //when
+        long afterBalance = userRepository.save(user).getBalance();
+
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

@@ -5,11 +5,8 @@ import com.hhplus.concert.common.constants.MessageEnum;
 import com.hhplus.concert.common.exception.BusinessException;
 import com.hhplus.concert.domain.model.concert.ConcertSeat;
 import com.hhplus.concert.domain.model.reservation.Reservation;
-import com.hhplus.concert.domain.model.user.User;
 import com.hhplus.concert.domain.service.concert.ConcertService;
 import com.hhplus.concert.domain.service.reservation.ReservationService;
-import com.hhplus.concert.domain.service.queue.QueueService;
-import com.hhplus.concert.domain.service.token.TokenService;
 import com.hhplus.concert.domain.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,17 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 
 public class ReservationUseCase {
-
-    @Autowired
-    TokenService tokenService;
-
-    @Autowired
-    QueueService queueService;
 
     @Autowired
     ConcertService concertService;

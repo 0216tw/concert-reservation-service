@@ -1,31 +1,30 @@
 package com.hhplus.concert.application.usecase;
 
-import com.hhplus.concert.domain.service.queue.QueueService;
-import com.hhplus.concert.domain.service.token.TokenService;
+import com.hhplus.concert.domain.service.redis.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class QueuePollingUseCase {
 
     final static Logger log = LoggerFactory.getLogger(QueuePollingUseCase.class);
+
     @Autowired
-    QueueService queueService;
+    RedisService redisService;
+
+    private RedisTemplate<String, String> redisTemplate;
 
 
-    public void checkTokenSchedule() {
-
-        log.info("토큰 스케줄러가 실행됩니다. {}" , new Date());
-        queueService.removeExpiredTokens();
-        queueService.changeWaitToActiveTokens();
-    }
-
-    public void updateActiveToExpiredToken() {
-        queueService.changeActiveToExpiredTokensByActiveAt(5);
+    public void changeTokenFromWaitingToActive() {
+        redisService.changeTokenFromWaitingToActive();
     }
 }

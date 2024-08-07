@@ -7,10 +7,11 @@ import com.hhplus.concert.domain.model.payment.Payment;
 import com.hhplus.concert.domain.model.reservation.Reservation;
 import com.hhplus.concert.domain.model.user.User;
 import com.hhplus.concert.domain.service.payment.PaymentService;
-import com.hhplus.concert.domain.service.queue.QueueService;
 import com.hhplus.concert.domain.service.reservation.ReservationService;
 import com.hhplus.concert.domain.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ public class PaymentUseCase {
     UserService userService ;
 
     @Autowired
-    QueueService queueService;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Transactional
     public ApiResponse payment(long reservationId) {
@@ -61,9 +62,9 @@ public class PaymentUseCase {
         paymentService.insertPaymentInfo(payment);
 
         //토큰 만료
-        queueService.changeActiveToExpiredTokensByUserId(user.getUserId());
-
-
+        ZSetOperations<String, String> zSetOps = redisTemplate.opsForZSet();
+        String activeQueue = "activeQueue";
+        zSetOps.remove(activeQueue , user.getToken());
         return new ApiResponse("OK" , MessageEnum.PAYMENT_SUCCESS);
     }
 }

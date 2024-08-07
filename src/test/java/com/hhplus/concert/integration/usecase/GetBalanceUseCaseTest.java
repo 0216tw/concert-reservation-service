@@ -9,6 +9,7 @@ import com.hhplus.concert.application.usecase.TokenCreationUseCase;
 import com.hhplus.concert.common.constants.MessageEnum;
 import com.hhplus.concert.common.exception.BusinessException;
 import com.hhplus.concert.domain.model.queue.Queue;
+import com.hhplus.concert.domain.model.user.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,9 +51,12 @@ public class GetBalanceUseCaseTest {
 
         Optional<Queue> foundQueue = queueRepository.findByToken(token);
         String userId = foundQueue.get().getUserId();
-
+        User user = userRepository.findById(userId).get();
+        user.setBalance(user.getBalance() + charge);
         //when
-        long afterBalance = userRepository.charge(userId , charge);
+        long afterBalance = userRepository.save(user).getBalance();
+
+
 
         //then
         Assertions.assertThat(afterBalance).isEqualTo(charge);

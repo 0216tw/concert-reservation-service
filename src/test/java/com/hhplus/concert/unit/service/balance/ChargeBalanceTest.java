@@ -9,6 +9,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
@@ -19,6 +20,8 @@ import static org.mockito.Mockito.*;
  *  성공 - 충전 후 잔액 반환
  *  실패 1- 존재하지 않는 사용자인 경우
  */
+
+@SpringBootTest
 public class ChargeBalanceTest extends BalanceServiceBase {
 
 
@@ -32,11 +35,12 @@ public class ChargeBalanceTest extends BalanceServiceBase {
         String userId = token.getUserId();
         long charge = 150000 ;
 
+
         //when
         doAnswer(invocation -> {
             mockUser.get(0).setBalance(mockUser.get(0).getBalance() + charge);
             return mockUser.get(0).getBalance() ;
-        }).when(balanceRepository).charge(userId , charge);
+        }).when(balanceRepository).save(any(User.class));
 
         //when
         doAnswer(invocation -> {
@@ -63,7 +67,7 @@ public class ChargeBalanceTest extends BalanceServiceBase {
         long charge = 150000 ;
 
         //when
-       when(balanceRepository.charge(anyString() , anyLong())).thenReturn(0L);
+       when(balanceRepository.save(new User()).getBalance()).thenReturn(0L);
         //when
         RuntimeException exception = assertThrows(BusinessException.class , () -> {
             long afterCharge = balanceService.charge(userId , charge);
